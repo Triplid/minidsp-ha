@@ -1,4 +1,2 @@
 #!/command/with-contenv
-# Активация venv (s6 with-contenv это подхватит)
-source /opt/venv/bin/activate
-exec gunicorn --bind 0.0.0.0:8080 --workers 1 api:app
+/opt/venv/bin/gunicorn --bind 0.0.0.0:8080 --workers 1 --timeout 120 api:app
