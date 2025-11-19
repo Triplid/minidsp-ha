@@ -1,13 +1,7 @@
 #!/command/with-contenv sh
+# ←←←← ЭТО ОБЯЗАТЕЛЬНО! Именно этот шебанг и только он!
 
-# Это единственный разрешённый шебанг в s6 v3
-# Никаких bash, никаких env — только sh + with-contenv от s6
-
-source /opt/venv/bin/activate
-
-exec gunicorn --bind 0.0.0.0:8080 \
-              --workers 1 \
-              --threads 2 \
-              --access-logfile - \
-              --error-logfile - \
-              api:app
+exec /opt/venv/bin/gunicorn --bind 0.0.0.0:8080 \
+                            --workers 1 \
+                            --worker-class sync \
+                            api:app
