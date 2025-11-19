@@ -1,7 +1,4 @@
-#!/command/with-contenv sh
-# ←←←← ЭТО ОБЯЗАТЕЛЬНО! Именно этот шебанг и только он!
-
-exec /opt/venv/bin/gunicorn --bind 0.0.0.0:8080 \
-                            --workers 1 \
-                            --worker-class sync \
-                            api:app
+#!/command/with-contenv
+# Активация venv (s6 with-contenv это подхватит)
+source /opt/venv/bin/activate
+exec gunicorn --bind 0.0.0.0:8080 --workers 1 api:app
