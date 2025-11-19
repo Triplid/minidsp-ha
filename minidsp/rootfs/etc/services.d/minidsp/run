@@ -1,13 +1,13 @@
-#!/usr/bin/env bash
-set -e
+#!/command/with-contenv sh
 
-echo "[miniDSP] Starting Gunicorn (PID 1 будет именно он)..."
+# Это единственный разрешённый шебанг в s6 v3
+# Никаких bash, никаких env — только sh + with-contenv от s6
 
 source /opt/venv/bin/activate
 
-# ←←←← ВОТ ЭТО ГЛАВНОЕ: exec + s6-setuidgid !!!
-exec s6-setuidgid abc:abc gunicorn --bind 0.0.0.0:8080 \
-     --workers 2 \
-     --access-logfile - \
-     --error-logfile - \
-     api:app
+exec gunicorn --bind 0.0.0.0:8080 \
+              --workers 1 \
+              --threads 2 \
+              --access-logfile - \
+              --error-logfile - \
+              api:app
