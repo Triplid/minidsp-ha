@@ -1,7 +1,7 @@
-name: "miniDSP 2x4HD"
-slug: "minidsp_fixed"
-description: "Рабочий контроллер miniDSP 2x4 HD"
-version: "1.0.3"
+name: "miniDSP 2x4HD (рабочий 2025)"
+slug: "minidsp_2x4hd"
+description: "Управление miniDSP 2x4 HD (пресеты + источник)"
+version: "2025.11.19"
 arch:
   - aarch64
   - armv7
@@ -12,7 +12,5 @@ boot: auto
 ports:
   8080/tcp: 8080
 host_network: false
-devices:
-  - /dev/bus/usb:/dev/bus/usb   # если будешь HID использовать потом
 options: {}
 schema: {}
