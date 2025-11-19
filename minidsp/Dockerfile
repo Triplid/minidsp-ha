@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base:3.19
+ARG BUILD_FROM=ghcr.io/home-assistant/aarch64-base:3.19
 FROM ${BUILD_FROM}
 
 RUN apk add --no-cache python3 py3-pip \
@@ -6,6 +6,5 @@ RUN apk add --no-cache python3 py3-pip \
     && /opt/venv/bin/pip install --no-cache-dir flask gunicorn
 
 COPY api.py /app/api.py
-WORKDIR /app
-
 COPY rootfs/ /
+WORKDIR /app
